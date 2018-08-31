@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MusicManager : MonoBehaviour
 {
 
@@ -18,13 +19,8 @@ public class MusicManager : MonoBehaviour
     protected float[] newSample = new float[512];
 
     public Instantiate512Cubes bossRingScript;
-
-
+    
     AudioSource audioSource;
-
-    // Just for display, to delete
-    public GameObject maxPrefab, snarePrefab, kickPrefab;
-    int t = 0;
 
     private List<SoundTriggeredAbstract> subscribers = new List<SoundTriggeredAbstract>();
 
@@ -41,8 +37,6 @@ public class MusicManager : MonoBehaviour
         GetSpectrumAudioSource();
         // Then we extract the snare and the kick from the spectrum. The values must be in a range of [0f, 1f]
         GetKickAndSnareIntensity();
-
-        DrawEverything();
 
         HandleSubscribers();
         bossRingScript.Animate(samples);
@@ -84,27 +78,6 @@ public class MusicManager : MonoBehaviour
             realSnareIntensity += samples[f] /16f * snareMutliplier; //16f = average *2
         }
         snareIntensity = realSnareIntensity > 1f ? 1f : realSnareIntensity;
-    }
-
-    private void DrawEverything()
-    {
-
-        if (Input.GetKey("t"))
-        {
-            /*
-            t++;
-            GameObject max = Instantiate(maxPrefab);
-            max.transform.position = new Vector3(t - 100, 30, 0);
-
-            GameObject kick = Instantiate(kickPrefab);
-            kick.transform.position = new Vector3(t - 100, kickIntensity * 30, 0);
-
-            GameObject snare = Instantiate(snarePrefab);
-            snare.transform.position = new Vector3(t - 100, snareIntensity * 30, 1);
-            */
-
-        }
-
     }
 
     public void Subscribe(SoundTriggeredAbstract gameobject)
