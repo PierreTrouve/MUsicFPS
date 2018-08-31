@@ -33,8 +33,8 @@ public class WeaponManager : MonoBehaviour {
     private float nextFire;
 
     public void Init() {
-        animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        //animator = GetComponent<Animator>();
+        //audioSource = GetComponent<AudioSource>();
     }
 
     public void SnareShoot()
@@ -55,23 +55,23 @@ public class WeaponManager : MonoBehaviour {
     private void HandleCriticalShot() {
         comboMeter++;
         nextFire = Time.time + criticalFireRate;
-        animator.SetTrigger("CriticalShoot");
-        audioSource.PlayOneShot(snareCriticalHitClip);
+        //animator.SetTrigger("CriticalShoot");
+        //audioSource.PlayOneShot(snareCriticalHitClip);
     }
     
     private void HandleNormalShot() {
         comboMeter++;
         nextFire = Time.time + successFireRate;
-        animator.SetTrigger("Shoot");
-        audioSource.PlayOneShot(snareSuccessHitClip);
+        //animator.SetTrigger("Shoot");
+        //audioSource.PlayOneShot(snareSuccessHitClip);
 
     }
 
     private void HandleFailedShot() {
         comboMeter = 0;
-        animator.SetTrigger("MissedShoot");
+        //animator.SetTrigger("MissedShoot");
         nextFire = Time.time + failedFireRate;
-        audioSource.PlayOneShot(snareFailedHitClip);
+        //audioSource.PlayOneShot(snareFailedHitClip);
 
     }
 
