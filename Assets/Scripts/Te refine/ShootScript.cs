@@ -32,7 +32,7 @@ public class ShootScript : MonoBehaviour {
 
         if (shootgunPressed)
         {
-            int shootgunDmg = (int)(AudioScript.frecencyBands[1] * 300);
+            int shootgunDmg = 10;
 
             Debug.Log("Shootgun : " + shootgunDmg + " dgs");
         }
@@ -54,7 +54,7 @@ public class ShootScript : MonoBehaviour {
 
                 if (health != null)
                 {
-                    health.Damage((int)(AudioScript.frecencyBands[5] * 400));
+                    health.Damage((int)(1 * 400));
                 }
 
                 if (hit.rigidbody != null)
@@ -67,7 +67,7 @@ public class ShootScript : MonoBehaviour {
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
             }
 
-            int lazerDmg = (int)(AudioScript.frecencyBands[5] * 400);
+            int lazerDmg = (int)(1 * 400);
             Debug.Log("Lazer : " + lazerDmg + " dmg");
         }
 
