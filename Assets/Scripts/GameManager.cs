@@ -6,11 +6,13 @@ public class GameManager : MonoBehaviour {
 
     public MusicManager musicManager;
     public WeaponManager weaponManager;
+    public EnemyManager enemyManager;
 
 	// Use this for initialization
 	void Start () {
         musicManager.Init();
         weaponManager.Init();
+        enemyManager.Init();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour {
         } else if(Input.GetButtonDown("Fire2")) {
             weaponManager.KickShoot();
         }
+
+        enemyManager.HandleEnnemies();
 
     }
 }
