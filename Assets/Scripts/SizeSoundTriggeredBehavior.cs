@@ -6,13 +6,12 @@ public class SizeSoundTriggeredBehavior : SoundTriggeredAbstract
 {
     public bool followKick = true;
     public float minFactor = 1f;
-    public float maxFactor = 2f;
+    public float maxFactor = 10f;
 
     Transform transform;
     Vector3 initialScale;
    
-
-    public override void Init() {
+    public override void InitChild() {
         transform = gameObject.transform;
         initialScale = transform.localScale;
     }

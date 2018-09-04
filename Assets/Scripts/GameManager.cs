@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         musicManager.Init();
         weaponManager.Init();
-        enemyManager.Init();
+        enemyManager.Init(musicManager);
 	}
 	
 	// Update is called once per frame
