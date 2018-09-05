@@ -5,18 +5,17 @@ using UnityEngine;
 
 public abstract class SoundTriggeredAbstract : MonoBehaviour
 {
-    public GameObject musicManager;
-
     MusicManager musicManagerScript;
 
-    void Start()
+    public void Init()
     {
-        musicManagerScript = musicManager.GetComponent<MusicManager>();
+        MusicManager[] musicManagers = FindObjectsOfType(typeof(MusicManager)) as MusicManager[];
+        musicManagerScript = musicManagers[0];
         musicManagerScript.Subscribe(this);
-        Init();
+        InitChild();
     }
 
-    public abstract void Init();
+    public abstract void InitChild();
 
     public abstract void Handle(float kickIntensity, float snareIntensity);
 }

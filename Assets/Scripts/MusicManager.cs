@@ -17,12 +17,11 @@ public class MusicManager : MonoBehaviour
 
     public float[] samples = new float[512];
     protected float[] newSample = new float[512];
-
-    public Instantiate512Cubes bossRingScript;
     
     AudioSource audioSource;
 
     private List<SoundTriggeredAbstract> subscribers = new List<SoundTriggeredAbstract>();
+    private List<SampleTriggered> sampleSubscribers = new List<SampleTriggered>();
 
 
     public void Init()
@@ -39,7 +38,6 @@ public class MusicManager : MonoBehaviour
         GetKickAndSnareIntensity();
 
         HandleSubscribers();
-        bossRingScript.Animate(samples);
     }
 
     void GetSpectrumAudioSource()
@@ -84,12 +82,20 @@ public class MusicManager : MonoBehaviour
     {
         subscribers.Add(gameobject);
     }
+    
+    public void SubscribeSampleSubscriber(SampleTriggered subscriber) {
+        sampleSubscribers.Add(subscriber);
+    }
 
     void HandleSubscribers()
     {
         foreach (SoundTriggeredAbstract subscriber in subscribers)
         {
             subscriber.Handle(kickIntensity, snareIntensity);
+        }
+
+        foreach(SampleTriggered sampleSubscriber in sampleSubscribers) {
+            sampleSubscriber.Handle(samples[sampleSubscriber.index]);
         }
     }
 }

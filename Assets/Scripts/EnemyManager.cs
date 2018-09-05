@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
 
-    protected List<EnemyAbstract> enemies = new List<EnemyAbstract>();
+    public GameObject boss;
+
+    protected List<EnemyBehavior> enemies = new List<EnemyBehavior>();
+    protected BossBehavior bossBehavior;
 
 	// Use this for initialization
-	public void Init () {
-		
-	}
+	public void Init (MusicManager musicManager) {
+        bossBehavior = boss.GetComponent<BossBehavior>();
+        bossBehavior.Init(musicManager);
+    }
 
-    public void AddEnemy(EnemyAbstract enemy) {
+    public void AddEnemy(EnemyBehavior enemy) {
         enemies.Add(enemy);
     }
-	
-	// Update is called once per frame
-	public void HandleEnnemies () {
-		foreach(EnemyAbstract enemy in enemies) {
+
+    public void SubscribeBoss(BossBehavior bossBehaviorParam) {
+        bossBehavior = bossBehaviorParam;
+    }
+
+    // Update is called once per frame
+    public void HandleEnnemies () {
+        if (null != bossBehavior)
+            bossBehavior.Handle();
+
+		foreach(EnemyBehavior enemy in enemies) {
             enemy.Handle();
         }
 	}
+
+    public void StartPhase2() {
+        bossBehavior.AdvancePhase2();
+    }
+
 }
