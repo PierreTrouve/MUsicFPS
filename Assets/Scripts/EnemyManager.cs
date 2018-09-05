@@ -33,4 +33,8 @@ public class EnemyManager : MonoBehaviour {
         }
 	}
 
+    public void StartPhase2() {
+        bossBehavior.AdvancePhase2();
+    }
+
 }

@@ -28,5 +28,8 @@ public class GameManager : MonoBehaviour {
 
         enemyManager.HandleEnnemies();
 
+        if (Input.GetKeyDown("a")) {
+            enemyManager.StartPhase2();
+        }
     }
 }
