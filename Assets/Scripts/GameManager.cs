@@ -21,10 +21,8 @@ public class GameManager : MonoBehaviour {
         weaponManager.SetIntensities(musicManager.kickIntensity, musicManager.snareIntensity);
 
         if (Input.GetButtonDown("Fire1")) {
-            weaponManager.SnareShoot();
-        } else if(Input.GetButtonDown("Fire2")) {
-            weaponManager.KickShoot();
-        }
+            weaponManager.Fire();
+        } 
 
         enemyManager.HandleEnnemies();
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossBehavior : MonoBehaviour {
 
     public float radius = 30f;
+    public GameObject player;
 
     // state 1 : pacific, 2 : satellites, 3 : final
     private int state = 1;
@@ -76,6 +77,10 @@ public class BossBehavior : MonoBehaviour {
 
 
     void HandleFinalPhase() {
+
+    }
+
+    void Shoot() {
 
     }
 }

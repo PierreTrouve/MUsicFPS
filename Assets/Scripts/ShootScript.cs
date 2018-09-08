@@ -24,20 +24,9 @@ public class ShootScript : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Fire (float intensity) {
 
-
-        bool shootgunPressed = Input.GetButtonDown("Fire1");
-        bool lazerGunPressed = Input.GetButtonDown("Fire2");
-
-        if (shootgunPressed)
-        {
-            int shootgunDmg = 10;
-
-            Debug.Log("Shootgun : " + shootgunDmg + " dgs");
-        }
-
-        if (lazerGunPressed && Time.time > nextFire)
+        if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             StartCoroutine(ShotEffect());
@@ -50,8 +39,8 @@ public class ShootScript : MonoBehaviour {
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
                 laserLine.SetPosition(1, hit.point);
-                Shootable health = hit.collider.GetComponent<Shootable>();
-
+                //Shootable health = hit.collider.GetComponent<Shootable>();
+                /*
                 if (health != null)
                 {
                     health.Damage((int)(1 * 400));
@@ -60,7 +49,7 @@ public class ShootScript : MonoBehaviour {
                 if (hit.rigidbody != null)
                 {
                     hit.rigidbody.AddForce(-hit.normal * hitForce);
-                }
+                }*/
             }
             else
             {
