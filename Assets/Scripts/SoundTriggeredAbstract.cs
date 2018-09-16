@@ -7,6 +7,13 @@ public abstract class SoundTriggeredAbstract : MonoBehaviour
 {
     MusicManager musicManagerScript;
 
+    void Start() {
+        MusicManager[] musicManagers = FindObjectsOfType(typeof(MusicManager)) as MusicManager[];
+        musicManagerScript = musicManagers[0];
+        musicManagerScript.Subscribe(this);
+        InitChild();
+    }
+
     public void Init()
     {
         MusicManager[] musicManagers = FindObjectsOfType(typeof(MusicManager)) as MusicManager[];

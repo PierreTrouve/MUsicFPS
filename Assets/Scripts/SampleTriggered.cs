@@ -8,6 +8,7 @@ public class SampleTriggered : MonoBehaviour {
     
     Transform transform;
     Vector3 initialScale;
+    public bool activated = true;
 
     // Use this for initialization
     public void Init (int indexParam) {
@@ -19,6 +20,8 @@ public class SampleTriggered : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void Handle (float sampleValue) {
-        transform.localScale = initialScale * (40 * sampleValue + 1);
+        if (sampleValue > 3)
+            sampleValue = 3;
+            transform.localScale = initialScale + initialScale * sampleValue;
     }
 }

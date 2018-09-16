@@ -7,13 +7,17 @@ public class GameManager : MonoBehaviour {
     public MusicManager musicManager;
     public WeaponManager weaponManager;
     public EnemyManager enemyManager;
+    public TrackListenerScript trackManager;
 
 	// Use this for initialization
 	void Start () {
         musicManager.Init();
         weaponManager.Init();
         enemyManager.Init(musicManager);
-	}
+        enemyManager.StartPhase2();
+
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,10 +28,11 @@ public class GameManager : MonoBehaviour {
             weaponManager.Fire();
         } 
 
-        enemyManager.HandleEnnemies();
+        if (Input.GetKeyDown("o")) {
+            musicManager.StartMusic();
+            trackManager.StartLecture();
+        } 
 
-        if (Input.GetKeyDown("a")) {
-            enemyManager.StartPhase2();
-        }
+        enemyManager.HandleEnnemies();
     }
 }

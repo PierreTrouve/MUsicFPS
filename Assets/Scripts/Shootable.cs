@@ -17,4 +17,5 @@ public class Shootable : MonoBehaviour
         }
     }
 
+
 }

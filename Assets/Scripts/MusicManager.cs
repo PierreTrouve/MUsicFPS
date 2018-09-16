@@ -40,6 +40,10 @@ public class MusicManager : MonoBehaviour
         HandleSubscribers();
     }
 
+    public void StartMusic() {
+        audioSource.Play();
+    }
+
     void GetSpectrumAudioSource()
     {
         if (samples == null)
@@ -95,7 +99,7 @@ public class MusicManager : MonoBehaviour
         }
 
         foreach(SampleTriggered sampleSubscriber in sampleSubscribers) {
-            sampleSubscriber.Handle(samples[sampleSubscriber.index]);
+            sampleSubscriber.Handle(samples[sampleSubscriber.index] * sampleSubscriber.index / 2);
         }
     }
 }

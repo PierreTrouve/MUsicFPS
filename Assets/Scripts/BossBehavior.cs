@@ -7,6 +7,8 @@ public class BossBehavior : MonoBehaviour {
     public float radius = 30f;
     public GameObject player;
 
+    public float healthPoint = 10000;
+
     // state 1 : pacific, 2 : satellites, 3 : final
     private int state = 1;
 
@@ -15,6 +17,8 @@ public class BossBehavior : MonoBehaviour {
     public GameObject enemyPrefab;
 
     GameObject[] satelites = new GameObject[64];
+
+    private int satelliteCountDown = 0;
 
     public void Init(MusicManager musicManagerParam) {
         EnemyManager[] enemyManagers = FindObjectsOfType(typeof(EnemyManager)) as EnemyManager[];
@@ -82,5 +86,13 @@ public class BossBehavior : MonoBehaviour {
 
     void Shoot() {
 
+    }
+
+    public void ReceiveDamage(int dmg) {
+        healthPoint -= dmg;
+        GameObject sattelite = satelites[satelliteCountDown++];
+        sattelite.transform.parent = null;
+        EnemyProjectile enemyProjectile = sattelite.GetComponent<EnemyProjectile>();
+        enemyProjectile.Init(player.transform.position);
     }
 }
